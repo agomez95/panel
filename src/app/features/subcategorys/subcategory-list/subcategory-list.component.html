@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Subcategorías</h2>
+    <a routerLink="/subcategorys/create" class="btn btn-primary">Crear Subcategoría</a>
+</div>
+  
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+            <th>Creado</th>
+            <th>Modificado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let subcategory of subcategories">
+            <td>{{ subcategory.id }}</td>
+            <td>{{ subcategory.name }}</td>
+            <td>{{ subcategory.category }}</td>
+            <td>
+                <span class="badge" [ngClass]="{ 'bg-success': subcategory.state, 'bg-danger': !subcategory.state }">{{ subcategory.state ? 'Activo' : 'Inactivo' }}</span>
+            </td>
+            <td>{{ subcategory.createdAt | date: 'short' }}</td>
+            <td>{{ subcategory.updatedAt | date: 'short' }}</td>
+            <td>
+                <a [routerLink]="['/subcategorys/edit', subcategory.id]" class="btn btn-warning btn-sm">Editar</a>
+                <button
+                class="btn btn-info btn-sm"
+                (click)="toggleSubcategoryState(subcategory)"
+                >
+                {{ subcategory.state ? 'Desactivar' : 'Activar' }}
+                </button>
+                <button
+                class="btn btn-danger btn-sm"
+                (click)="deleteSubcategory(subcategory.id)"
+                >
+                Eliminar
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+  

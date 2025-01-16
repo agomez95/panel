@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>{{ isEdit ? 'Editar Marca' : 'Crear Marca' }}</h1>
+    <form (ngSubmit)="saveBrand()">
+        <div class="mb-3">
+            <label for="brandName" class="form-label">Nombre de la Marca</label>
+            <input type="text" class="form-control" id="brandName" placeholder="Ingresa el nombre de la marca" />
+        </div>
+        <button type="submit" class="btn btn-success">{{ isEdit ? 'Guardar Cambios' : 'Crear' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="router.navigate(['/brands'])">Cancelar</button>
+    </form>
+</div>

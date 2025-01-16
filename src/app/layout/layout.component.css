@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+app-header {
+  height: 60px;
+  background-color: #343a40; /* Bootstrap dark */
+  color: white;
+}
+
+app-sidebar {
+  height: calc(100vh - 60px); /* Altura menos el header */
+  background-color: #f8f9fa; /* Bootstrap light gray */
+  overflow-y: auto;
+}
+
+app-footer {
+  height: 50px;
+  background-color: #343a40; /* Bootstrap dark */
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+
+.col-10 {
+  overflow-y: auto;
+}

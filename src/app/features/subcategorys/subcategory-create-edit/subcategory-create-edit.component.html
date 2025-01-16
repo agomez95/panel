@@ -1,0 +1,67 @@
+<div *ngIf="!subcategory && !newSubcategory">Cargando...</div>
+
+<div *ngIf="subcategory">
+    <h2 *ngIf="isEditMode">Editar Subcategoría</h2>
+    <h2 *ngIf="!isEditMode">Crear Subcategoría</h2>
+    
+    <form (ngSubmit)="saveSubcategory()">
+        <div class="mb-3">
+            <label for="name" class="form-label">{{ isEditMode ? '' : 'Nombre' }}</label>
+            <input 
+                type="text" 
+                class="form-control"
+                name="name"
+                [(ngModel)]="subcategory!.name"
+                [placeholder]="isEditMode ? 'Digite el nuevo nombre' : 'Ingrese el nombre'" 
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <select
+                id="category_id"
+                class="form-select"
+                [(ngModel)]="selectedCategoryId"
+                name="category_id"
+                required
+                (change)="onCategoryChange()"
+            >
+                <option value="" disabled selected>Seleccione una categoría</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancel()"
+        >
+            Cancelar
+        </button>
+    </form>
+<!-- 
+    <form (ngSubmit)="saveSubcategory()">
+        <div class="mb-3">
+            <label for="categoryId" class="form-label">Categoría</label>
+            <select
+                id="categoryId"
+                class="form-select"
+                
+                name="categoryId"
+                required
+            >
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+            </option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancel()"
+        >
+        Cancelar
+        </button>
+    </form> -->
+</div>

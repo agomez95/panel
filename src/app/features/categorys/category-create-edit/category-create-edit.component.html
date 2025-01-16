@@ -1,0 +1,31 @@
+<div *ngIf="!category">Cargando...</div>
+
+<div *ngIf="category">
+  <h2 *ngIf="isEditMode">Editar Categoría</h2>
+  <h2 *ngIf="!isEditMode">Crear Categoría</h2>
+
+  <form (ngSubmit)="saveCategory()">
+    <div class="mb-3">
+        <label for="name" class="form-label">
+            {{ isEditMode ? '' : 'Nombre' }}
+        </label>
+        <input
+            type="text"
+            id="name"
+            class="form-control"
+            [(ngModel)]="category!.name"
+            name="name"
+            [placeholder]="isEditMode ? 'Digite su nuevo nombre' : 'Ingrese el nombre'"
+            required
+        />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="cancel()"
+    >
+      Cancelar
+    </button>
+  </form>
+</div>
