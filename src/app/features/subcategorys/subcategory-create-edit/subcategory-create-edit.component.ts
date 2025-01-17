@@ -50,8 +50,8 @@ export class SubcategoryCreateEditComponent implements OnInit{
   loadSubcategory(id: number): void {
     this._subcategoryService.getSubcategoryById(id).subscribe({
       next: (subcategory) => {
-        this.subcategory = subcategory;
-        this.selectedCategoryId = subcategory.category_id; // Establecer la categoría seleccionada
+        this.subcategory = Array.isArray(subcategory) ? subcategory[0] : subcategory;
+        this.selectedCategoryId = Number(this.subcategory?.category_id) // Establecer la categoría seleccionada
       },
       error: (err) => {
         console.error('Error al cargar la subcategoría:', err);

@@ -6,7 +6,7 @@
     
     <form (ngSubmit)="saveSubcategory()">
         <div class="mb-3">
-            <label for="name" class="form-label">{{ isEditMode ? '' : 'Nombre' }}</label>
+            <label for="name" class="form-label">{{ isEditMode ? 'Escriba el nuevo nombre de su subcategoría:' : 'Nombre' }}</label>
             <input 
                 type="text" 
                 class="form-control"

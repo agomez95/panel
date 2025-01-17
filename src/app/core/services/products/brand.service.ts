@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { HttpService } from '../../http/http.service';
-import { API_BASE_URL, CATEGORY, CATEGORY_ACTIVATE, CATEGORY_DEACTIVATE } from '../../http/enpoints';
+import { API_BASE_URL, BRAND, BRAND_ACTIVATE, BRAND_DEACTIVATE } from '../../http/enpoints';
 
 import { Brand, CreateBrand, UpdateBrand } from '../../models/index.model';
 
@@ -10,9 +10,9 @@ import { Brand, CreateBrand, UpdateBrand } from '../../models/index.model';
   providedIn: 'root'
 })
 export class BrandService {
-  private readonly BRAND_URL = `${API_BASE_URL}${CATEGORY}`;
-  private readonly BRAND_ACTIVATE_URL = `${API_BASE_URL}${CATEGORY_ACTIVATE}`;
-  private readonly BRAND_DEACTIVATE_URL = `${API_BASE_URL}${CATEGORY_DEACTIVATE}`;
+  private readonly BRAND_URL = `${API_BASE_URL}${BRAND}`;
+  private readonly BRAND_ACTIVATE_URL = `${API_BASE_URL}${BRAND_ACTIVATE}`;
+  private readonly BRAND_DEACTIVATE_URL = `${API_BASE_URL}${BRAND_DEACTIVATE}`;
   
   constructor(private http: HttpService) {}
 

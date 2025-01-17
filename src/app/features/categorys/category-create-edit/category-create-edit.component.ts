@@ -37,7 +37,7 @@ export class CategoryCreateEditComponent implements OnInit {
   loadCategory(id: number): void {
     this._categoryService.getCategoryById(id).subscribe({
       next: (category) => {
-        this.category = category;
+        this.category = Array.isArray(category) ? category[0] : category;
       },
       error: (err) => {
         console.error('Error loading category:', err);

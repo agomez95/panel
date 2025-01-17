@@ -7,7 +7,7 @@
   <form (ngSubmit)="saveCategory()">
     <div class="mb-3">
         <label for="name" class="form-label">
-            {{ isEditMode ? '' : 'Nombre' }}
+            {{ isEditMode ? 'Escriba el nuevo nombre de su categoría:' : 'Nombre' }}
         </label>
         <input
             type="text"

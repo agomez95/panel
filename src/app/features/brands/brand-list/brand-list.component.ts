@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
+import { Brand } from '../../../core/models/index.model';
+import { BrandService } from '../../../core/services/products/brand.service';
 
 @Component({
   selector: 'app-brand-list',
@@ -9,20 +12,42 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './brand-list.component.html',
   styleUrl: './brand-list.component.css'
 })
-export class BrandListComponent {
-  brands = [
-    { id: 1, name: 'Adidas' },
-    { id: 2, name: 'Nike' },
-    { id: 3, name: 'Puma' }
-  ];
+export class BrandListComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  brands: Brand[] = [];
 
-  createBrand() {
-    this.router.navigate(['/brands/create']);
+  constructor(private _brandService: BrandService) {}
+
+  ngOnInit(): void {
+    this.loadBrands();
   }
 
-  editBrand(id: number) {
-    this.router.navigate([`/brands/edit/${id}`]);
+  loadBrands(): void {
+    this._brandService.getBrands().subscribe((brands) => {
+      this.brands = brands;
+    });
+  }
+
+  toggleBrandState(brand: Brand): void {
+    const stateBrand = {
+      id: brand.id,
+      state: brand.state
+    };
+
+    if (stateBrand.state) {
+      this._brandService.deactivateBrand(stateBrand.id).subscribe(() => {
+        this.loadBrands(); // Recargar la lista después de actualizar
+      });
+    }
+
+    this._brandService.activateBrand(stateBrand.id).subscribe(() => {
+      this.loadBrands(); // Recargar la lista después de actualizar
+    });
+  }
+
+  deleteBrand(id: number): void {
+    this._brandService.deleteBrand(id).subscribe(() => {
+      this.loadBrands(); // Recargar la lista después de eliminar
+    });
   }
 }
